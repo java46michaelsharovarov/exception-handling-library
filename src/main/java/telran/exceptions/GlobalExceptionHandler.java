@@ -32,14 +32,17 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(IllegalStateException.class)
 	ResponseEntity<String> handlerIllegalArgument(IllegalStateException e) {
-		String msg = e.getMessage();
-		return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(NoSuchElementException.class)
 	ResponseEntity<String> handlerNoSuchElement(NoSuchElementException e) {
-		String msg = e.getMessage();
-		return new ResponseEntity<>(msg, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	ResponseEntity<String> handlerRuntime(RuntimeException e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.SEE_OTHER);
 	}
 	
 }
